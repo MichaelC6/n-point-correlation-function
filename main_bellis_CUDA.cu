@@ -20,10 +20,15 @@ void binning1d_CPU(float *vals, int num_vals_to_bin, float lo, float hi, int nbi
 	for (int idx = 0; idx<num_vals_to_bin; idx++ ) {
 
 		v = vals[idx];
-		v = sin(log(pow(1000,v)));
-		v = sin(log(pow(1000,v)));
-		v = sin(log(pow(1000,v)));
-		v = sin(log(pow(1000,v)));
+		//v = sin(log(pow(1000,v)));
+		//v = sin(log(pow(1000,v)));
+		//v = sin(log(pow(1000,v)));
+		//v = sin(log(pow(1000,v)));
+		//revamped to get actual histogramming of numbers.
+		v = v * 100;
+		v = v / 100;
+		v = v * 1000;
+		v = v / 1000;
 		bin = -1;
 		if (v<lo) {
 			bin=-1;
@@ -99,9 +104,9 @@ int main(int argc, char *argv[]) {
 	printf("nvals: %lu\n",nvals);
 
 
-	// For the random numbers, they will be between 0 and 1
+	// For the random numbers, they will be between 0 and 10
 	float lo = 0;
-	float hi = 1;
+	float hi = 10;
 	int nbins = imax;
 	float binwidth = (hi-lo)/nbins;
 	// This means we'll send this many values to the function
